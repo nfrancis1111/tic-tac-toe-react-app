@@ -5,8 +5,8 @@ import './index.css';
 
 function Square(props) {
     return (
-        <button className="square">
-          {/* TODO */}
+        <button className="square" onClick={() => {alert('click'); }}>
+          {props.value}
         </button>
       );
 }
@@ -14,7 +14,7 @@ function Square(props) {
 /*class Square extends React.Component {
     render() {
       return (
-        <button className="square"> 
+        <button className="square" onClick={(function) {alert('click'); }}>
         </button>
       );
     }
@@ -22,7 +22,7 @@ function Square(props) {
 
 function Board(props) {
     const renderSquare = (i) =>{
-       return <Square/>; 
+       return <Square value = {i}/>; 
     }
 
     const status = 'Next player: X';
