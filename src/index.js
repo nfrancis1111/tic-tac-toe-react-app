@@ -1,29 +1,53 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
 
 function Square(props) {
+  //  const [value, setValue] = useState(null);
+    
+/*
+    useState(() => {  
+        console.log('counter changed!')  
+      }) 
+*/
+
     return (
-        <button className="square" onClick={() => {alert('click'); }}>
+        <button className="square" onClick={() => props.onClick('X')} >
           {props.value}
         </button>
-      );
+    );
 }
+
 
 /*class Square extends React.Component {
     render() {
       return (
-        <button className="square" onClick={(function) {alert('click'); }}>
-        </button>
+      <button
+        className="square"
+        onClick={() => this.setState({value: 'X'})}
+      >
+        {this.state.value}
+      </button>
       );
     }
   } */
 
 function Board(props) {
-    const renderSquare = (i) =>{
-       return <Square value = {i}/>; 
+    const [squares, setSquares] = useState(Array(9).fill(null));
+
+    const handleClick = (i) =>{
+        const squares = squares.slice();
+        squares[i] = 'X';
+        setSquares({squares: squares})
+
     }
+
+    const renderSquare = (i) =>{
+       return <Square value = {squares[i]}
+           onClick={() => handleClick(i)}
+       />; 
+    }   
 
     const status = 'Next player: X';
 
@@ -40,6 +64,7 @@ function Board(props) {
             {renderSquare(4)}
             {renderSquare(5)}
           </div>
+        
           <div className="board-row">
             {renderSquare(6)}
             {renderSquare(7)}
