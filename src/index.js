@@ -13,7 +13,7 @@ function Square(props) {
 */
 
     return (
-        <button className="square" onClick={() => props.onClick('X')} >
+        <button className="square" onClick={() => props.onClick} >
           {props.value}
         </button>
     );
@@ -37,7 +37,8 @@ function Board(props) {
     const [squares, setSquares] = useState(Array(9).fill(null));
 
     const handleClick = (i) =>{
-        const squares = squares.slice();
+ //       const squares = squares.slice();
+        const squares = [...squares]
         squares[i] = 'X';
         setSquares({squares: squares})
 
